@@ -18,7 +18,7 @@
 
     gcloud iam service-accounts create bce-project-editor --description="Project Editor SA for Beyond Corp Enterprise" --display-name="bce_project_editor"
 
-    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA" --role="roles/editor"
+    gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA" --role="roles/owner"
     ````
 
 6. Create a __Cloud AI Platform notebook__:
