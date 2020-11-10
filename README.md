@@ -17,6 +17,6 @@
     python -m bash_kernel.install
     ````
     7.3 Refresh the browser
-8. Clone the repository by clicking on the Git icon and the "Clone a Repository" button. Use the following URL: ...
-9. Open the folder "..." in the File Browser and open the File "instructions.ipynb"
+8. Clone the repository by clicking on the Git icon and the "Clone a Repository" button. Use the following URL: https://github.com/Hermi999/bce.git
+9. Open the folder "bce" in the File Browser and open the File "instructions.ipynb"
 10. Follow the instructions there
