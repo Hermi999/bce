@@ -1,9 +1,6 @@
-basic:
-  combiningFunction: OR
-  conditions:
-  - ipSubnetworks:
-    - 0.0.0.0/0
-  - regions:
-    - IT
-    - DE
-    - AT
+- ipSubnetworks:
+  - 0.0.0.0/0
+- regions:
+  - IT
+  - DE
+  - AT
