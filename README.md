@@ -11,6 +11,8 @@
     gcloud services enable accesscontextmanager.googleapis.com
     gcloud services enable cloudresourcemanager.googleapis.com
     gcloud services enable appengine.googleapis.com
+    gcloud services enable sourcerepo.googleapis.com
+    gcloud services enable cloudbuild.googleapis.com
     ````
 5. Create new service account, bind it to the __project editor__ role and make it access context manager policy admin (to do this you have to be a Super Admin - see here: https://cloud.google.com/access-context-manager/docs/access-control):
     ````bash 
@@ -21,7 +23,11 @@
     gcloud iam service-accounts create bce-project-editor --description="Project Editor SA for Beyond Corp Enterprise" --display-name="bce_project_editor"
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA" --role="roles/owner"
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> fc3364d6620244d6e13b92bfe5808f4b1f399107
     gcloud organizations add-iam-policy-binding $ORG_ID --member="serviceAccount:$SA" --role="roles/accesscontextmanager.policyAdmin"
     ````
 
