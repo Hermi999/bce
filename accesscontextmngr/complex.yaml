@@ -1,0 +1,49 @@
+# Attributes can be included in any order in the condition
+- devicePolicy:
+  # Must include at least one of the following:
+    allowedEncryptionStatuses:
+    # Must include at least one of the following:
+      - ENCRYPTION_UNSUPPORTED
+      - ENCRYPTED
+      - UNENCRYPTED
+    osConstraints:
+    # Must include at least one of the following:
+      - osType: DESKTOP_CHROME_OS
+        minimumVersion: 11316.165.0
+        # minimumVersion must be formatted as x.x.x
+        requireVerifiedChromeOs: true
+      - osType: DESKTOP_MAC
+      - osType: DESKTOP_WINDOWS
+        # minimumVersion is not required
+    requireScreenlock: true
+    # requireScreenlock defaults to false if not included
+    requireAdminApproval: true
+    # requireAdminApproval defaults to false if not included
+    requireCorpOwned: true
+    # requireCorpOwned defaults to false if not included
+  ipSubnetworks:
+  # Must include one or more IPv4 and IPv6 CIDRs
+  # Cannot include private IP ranges (e.g., 192.168.0.0/16, 172.16.0.0/12)
+    - 252.0.2.0/24
+    - 2001:db8::/32
+  regions:
+  # Must include one or more regions as ISO 3166-1 alpha-2 codes
+    - US
+    - CH
+    - SG
+  requiredAccessLevels:
+  # Must include one or more existing access levels
+  # Must be formatted as accessPolicies/policy-name/accessLevels/level-name
+    - accessPolicies/247332951433/accessLevels/Device_Trust
+  members:
+  # Must include one or more valid IAM users or service accounts
+    - user:exampleuser@example.com
+    - serviceAccount:exampleaccount@example.iam.gserviceaccount.com
+  negate: true
+  # negate is not required and can only be included with other attributes
+  # If negate is included, rejects access attempts that match the attributes
+  # in the condition
+
+# You can include more than one condition in the .yaml file
+- ipSubnetworks:
+    - 176.0.2.0/24
