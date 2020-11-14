@@ -10,6 +10,8 @@
     gcloud services enable iap.googleapis.com
     gcloud services enable cloudresourcemanager.googleapis.com
     gcloud services enable appengine.googleapis.com
+    gcloud services enable sourcerepo.googleapis.com
+    gcloud services enable cloudbuild.googleapis.com
     ````
 5. Create new service account and bind it to the __project editor__ role:
     ````bash 
