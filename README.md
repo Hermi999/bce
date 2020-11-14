@@ -8,17 +8,21 @@
     gcloud services enable compute.googleapis.com
     gcloud services enable container.googleapis.com
     gcloud services enable iap.googleapis.com
+    gcloud services enable accesscontextmanager.googleapis.com
     gcloud services enable cloudresourcemanager.googleapis.com
     gcloud services enable appengine.googleapis.com
     ````
-5. Create new service account and bind it to the __project editor__ role:
+5. Create new service account, bind it to the __project editor__ role and make it access context manager policy admin (to do this you have to be a Super Admin - see here: https://cloud.google.com/access-context-manager/docs/access-control):
     ````bash 
     PROJECT_ID=$(gcloud config get-value core/project)
+    ORG_ID=$(gcloud projects describe $PROJECT_ID --format="value(parent.id)")
     SA="bce-project-editor@$PROJECT_ID.iam.gserviceaccount.com"
 
     gcloud iam service-accounts create bce-project-editor --description="Project Editor SA for Beyond Corp Enterprise" --display-name="bce_project_editor"
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA" --role="roles/owner"
+
+    gcloud organizations add-iam-policy-binding $ORG_ID --member="serviceAccount:$SA" --role="roles/accesscontextmanager.policyAdmin"
     ````
 
 6. Create a __Cloud AI Platform notebook__:
