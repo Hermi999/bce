@@ -23,11 +23,7 @@
     gcloud iam service-accounts create bce-project-editor --description="Project Editor SA for Beyond Corp Enterprise" --display-name="bce_project_editor"
 
     gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$SA" --role="roles/owner"
-<<<<<<< HEAD
-
-=======
     
->>>>>>> fc3364d6620244d6e13b92bfe5808f4b1f399107
     gcloud organizations add-iam-policy-binding $ORG_ID --member="serviceAccount:$SA" --role="roles/accesscontextmanager.policyAdmin"
     ````
 
