@@ -1,9 +1,9 @@
 # PoC folder for Zero Trust RfP
 
-1. Open Google Cloud console: console.cloud.google.com
-2. Open Cloud Shell
-3. Clone this repository: git clone ...
-4. Activate APIs ...
+1. Open Google Cloud console: https://console.cloud.google.com
+2. Open Cloud Shell (click on the symbol in the right upper corner next to the ? button)
+3. Clone this repository: git clone https://github.com/Hermi999/bce.git
+4. Activate APIs:
     ````bash
     gcloud services enable compute.googleapis.com
     gcloud services enable container.googleapis.com
