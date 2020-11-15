@@ -4,6 +4,10 @@ import yaml
 from os import listdir, makedirs
 from os.path import isfile, join, exists
 
+# optional args
+desc = ""
+cF = ""
+
 # create new folder for rendered yaml files
 newpath = './rendered'
 if not exists(newpath): 
@@ -29,7 +33,7 @@ for f in files:
                         # print("fn:", filename)
                     if item == "description":
                         # print("description:", doc)
-                        desc = doc
+                        desc = "--description='" + doc + "'"
                     if item == "title":
                         # print("title:", doc)
                         title = doc
@@ -37,7 +41,7 @@ for f in files:
                         for k, v in doc.items():
                             if k == "combiningFunction":
                                 # print("cF:", v)
-                                cF = v
+                                cF = "--combine-function=" + v
                             if k == "conditions":
                                 # print("conditions:", v)
                                 cond = v
@@ -49,7 +53,7 @@ for f in files:
                     yaml.dump(cond, outfile, default_flow_style=False, allow_unicode=True)    
 
                 # return gcloud commands
-                print(f"gcloud access-context-manager levels $ACTION {name} --basic-level-spec={filename} --combine-function={cF} --title={title} --description={desc}")
+                print(f"gcloud access-context-manager levels $ACTION {name} --basic-level-spec={filename} {cF} --title={title} {desc}")
 
-    except yaml.YAMLError as exc:
-        print(exc)
+            except yaml.YAMLError as exc:
+               print(exc)
