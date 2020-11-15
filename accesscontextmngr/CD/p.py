@@ -18,38 +18,38 @@ for f in files:
     if "yaml" == f.split(".")[-1]:
         print(f)
 
-with open("lowtrust.yaml", 'r') as stream:
-    try:
-        data = yaml.safe_load(stream)
-        for item, doc in data.items():
-            if item == "name":
-                # print("name:", doc)
-                name = doc
-                filename = newpath + "/" + name.split("/")[3] + ".yaml"
-                # print("fn:", filename)
-            if item == "description":
-                # print("description:", doc)
-                desc = doc
-            if item == "title":
-                # print("title:", doc)
-                title = doc
-            if item == "basic":
-                for k, v in doc.items():
-                    if k == "combiningFunction":
-                        # print("cF:", v)
-                        cF = v
-                    if k == "conditions":
-                        # print("conditions:", v)
-                        cond = v
-            if item == "advanced":
-                print("not implemented yet")
+        with open(f, 'r') as yaml_file:
+            try:
+                data = yaml.safe_load(yaml_file)
+                for item, doc in data.items():
+                    if item == "name":
+                        # print("name:", doc)
+                        name = doc
+                        filename = newpath + "/" + name.split("/")[3] + ".yaml"
+                        # print("fn:", filename)
+                    if item == "description":
+                        # print("description:", doc)
+                        desc = doc
+                    if item == "title":
+                        # print("title:", doc)
+                        title = doc
+                    if item == "basic":
+                        for k, v in doc.items():
+                            if k == "combiningFunction":
+                                # print("cF:", v)
+                                cF = v
+                            if k == "conditions":
+                                # print("conditions:", v)
+                                cond = v
+                    if item == "advanced":
+                        print("not implemented yet")
 
-        # create new file
-        with open(filename, "w", encoding="utf8") as outfile:
-            yaml.dump(cond, outfile, default_flow_style=False, allow_unicode=True)    
+                # create new file
+                with open(filename, "w", encoding="utf8") as outfile:
+                    yaml.dump(cond, outfile, default_flow_style=False, allow_unicode=True)    
 
-        # return gcloud commands
-        print(f"gcloud access-context-manager levels $ACTION {name} --basic-level-spec={filename} --combine-function={cF} --title={title} --description={desc}")
+                # return gcloud commands
+                print(f"gcloud access-context-manager levels $ACTION {name} --basic-level-spec={filename} --combine-function={cF} --title={title} --description={desc}")
 
     except yaml.YAMLError as exc:
         print(exc)
