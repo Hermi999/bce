@@ -4,7 +4,7 @@ import yaml
 from os import listdir, makedirs
 from os.path import isfile, join, exists
 
-# optional args
+# optional args 
 desc = ""
 cF = ""
 cmds = ["#!/bin/bash"]
@@ -27,7 +27,8 @@ for f in files:
                 for item, doc in data.items():
                     if item == "name":
                         name = doc
-                        filename = newpath + "/" + name.split("/")[3] + ".yaml"
+                        shortname = name.split("/")[3]
+                        filename = newpath + "/" + shortname + ".yaml"
                     if item == "description":
                         desc = "--description='" + doc + "'"
                     if item == "title":
@@ -45,8 +46,12 @@ for f in files:
                 with open(filename, "w", encoding="utf8") as outfile:
                     yaml.dump(cond, outfile, default_flow_style=False, allow_unicode=True)    
 
-                # save gcloud command
-                cmds.append(f"gcloud access-context-manager levels $ACTION {name} --basic-level-spec={filename} {cF} --title={title} {desc}")
+                # save gcloud commands
+                cmds.append(f'if [[ $(gcloud access-context-manager levels describe {name} 2>&1) == *"title"* ]]; then')
+                cmds.append(f"  gcloud access-context-manager levels update {name} --basic-level-spec={filename} {cF} --title='{title}' {desc}")
+                cmds.append("else")
+                cmds.append(f"  gcloud access-context-manager levels create {name} --basic-level-spec={filename} {cF} --title='{title}' {desc}")
+                cmds.append("fi")
 
             except yaml.YAMLError as exc:
                print(exc)

@@ -1,3 +1,19 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
-  args: ['gcloud', 'info']
+- name: 'python:3'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    pip3 install -r requirements.txt
+    cd CD/
+    python3 p.py
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args: 
+  - '-c'
+  - |
+    cd CD/
+    chmod u+x create_update_levels.sh
+    sed -i "s/POLICY_ID/$(gcloud access-context-manager policies list --organization=$(gcloud projects describe $PROJECT_ID --format="value(parent.id)") --format="value(NAME)")/g" create_update_levels.sh
+    find rendered -type f -name '*.yaml' -exec sed -i "s/POLICY_ID/$(gcloud access-context-manager policies list --organization=$(gcloud projects describe $PROJECT_ID --format="value(parent.id)") --format="value(NAME)")/g" {} \;
+    ./create_update_levels.sh

@@ -4,6 +4,6 @@ basic:
   - ipSubnetworks:
     - 80.110.0.0/16
     requiredAccessLevels:
-    - accessPolicies/1082987218928/accessLevels/Low_Trust
-name: accessPolicies/1082987218928/accessLevels/High_Trust
+    - accessPolicies/POLICY_ID/accessLevels/Low_Trust
+name: accessPolicies/POLICY_ID/accessLevels/High_Trust
 title: High Trust
