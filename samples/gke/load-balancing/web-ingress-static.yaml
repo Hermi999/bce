@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: basic-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "iap-gke-ip"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "gke-cert"
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  rules:
+  - host: gke.domain.com
+    http:
+      paths:             
+      - backend:
+          serviceName: web
+          servicePort: 8080
