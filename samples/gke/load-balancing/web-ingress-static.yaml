@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: basic-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "iap-gke-ip"
+    kubernetes.io/ingress.global-static-ip-name: "STATIC_IP_NAME"
     ingress.gcp.kubernetes.io/pre-shared-cert: "gke-cert"
     kubernetes.io/ingress.allow-http: "false"
 spec:
