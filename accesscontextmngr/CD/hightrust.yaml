@@ -1,9 +1,0 @@
-basic:
-  combiningFunction: OR
-  conditions:
-  - ipSubnetworks:
-    - 80.110.0.0/16
-    requiredAccessLevels:
-    - accessPolicies/POLICY_ID/accessLevels/Low_Trust
-name: accessPolicies/POLICY_ID/accessLevels/High_Trust
-title: High Trust

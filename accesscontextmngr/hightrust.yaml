@@ -1,5 +1,0 @@
-- ipSubnetworks:
-  - 80.110.0.0/16
-  requiredAccessLevels:
-  - accessPolicies/POLICY_ID/accessLevels/Low_Trust
-
