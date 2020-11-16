@@ -1,8 +1,24 @@
-# PoC folder for Zero Trust RfP
+# Google Cloud BeyondCorp JupyterLab Guide
+
+This Git repository contains a notebook which guides you through setting up __BeyondCorp on Google Cloud Platform__ (GCP). It contains the following use cases:
+
+- BeyondCorp (partial) Gitops-setup
+- BeyondCorp for Google App Engine web applications
+- BeyondCorp for Compute Engine web applications 
+- BeyondCorp for GKE web applications 
+- BeyondCorp for internal on-premise (or other Cloud) web apps 
+- BeyondCorp for external on-premise (or other Cloud) web apps 
+- BeyondCorp for TCP forwarding 
+- BeyondCorp implementation strategy 
+
+## Setup the JupyterLab notebook, APIs and service accounts
+
+The easiest way to run this JupyterLab notebook is by using [GCP AI Platform Notebooks](https://cloud.google.com/ai-platform-notebooks) and run a notebook with a service account which holds the correct IAM permissions:
 
 1. Open Google Cloud console: https://console.cloud.google.com
 2. Open Cloud Shell (click on the symbol in the right upper corner next to the ? button)
 3. Clone this repository: git clone https://github.com/Hermi999/bce.git
+   ![alt](img/cloudshell.png)
 4. Activate APIs:
     ````bash
     gcloud services enable compute.googleapis.com
