@@ -8,9 +8,9 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
-  - host: gke.domain.com
-    http:
-      paths:             
-      - backend:
+  - http:
+      paths:
+      - path: /*
+        backend:
           serviceName: web
           servicePort: 8080
